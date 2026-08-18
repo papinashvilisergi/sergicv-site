@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergi Papinashvili — DevOps / Platform Engineer</title>
+<style>
+  :root {
+    --bg: #0b0f14;
+    --bg-panel: #10161d;
+    --line: #1f2937;
+    --text: #e6edf3;
+    --text-dim: #8b96a5;
+    --accent: #3ecf8e;
+    --accent-dim: #235c43;
+    --amber: #e0a940;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .mono {
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+
+  /* Terminal header */
+  .term {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .term-bar {
+    display: flex; gap: 6px;
+    padding: 10px 14px;
+    background: #0e1319;
+    border-bottom: 1px solid var(--line);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #ff5f56; }
+  .dot.y { background: #ffbd2e; }
+  .dot.g { background: #27c93f; }
+  .term-body { padding: 22px 20px 26px; }
+  .term-line { color: var(--text-dim); font-size: 13.5px; }
+  .term-line .prompt { color: var(--accent); }
+  .term-out { margin: 4px 0 0; font-size: 15px; }
+  .name { font-size: 26px; font-weight: 700; color: var(--text); margin: 10px 0 2px; }
+  .role { color: var(--accent); font-size: 15px; margin-bottom: 14px; }
+  .contact { color: var(--text-dim); font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .contact a { color: var(--text-dim); text-decoration: none; border-bottom: 1px dotted var(--line); }
+  .contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .cursor { display: inline-block; width: 8px; height: 15px; background: var(--accent); margin-left: 4px; animation: blink 1s step-end infinite; vertical-align: -2px; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Section labels */
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.08em; color: var(--accent);
+    margin: 0 0 12px; text-transform: uppercase;
+  }
+  .eyebrow::before { content: "// "; color: var(--text-dim); }
+  section { margin-bottom: 44px; }
+
+  .summary { color: var(--text-dim); font-size: 15px; }
+
+  /* Skills */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 12.5px; padding: 5px 10px; border-radius: 5px;
+    background: var(--bg-panel); border: 1px solid var(--line); color: var(--text-dim);
+  }
+
+  /* Experience */
+  .job { border-left: 2px solid var(--line); padding: 2px 0 2px 18px; margin-bottom: 24px; position: relative; }
+  .job::before {
+    content: ""; position: absolute; left: -6px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+  }
+  .job-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; }
+  .job-co { font-weight: 600; }
+  .job-date { color: var(--text-dim); font-size: 13px; }
+  .job-title { color: var(--accent); font-size: 13.5px; margin-bottom: 6px; }
+  .job ul { margin: 6px 0 0; padding-left: 18px; color: var(--text-dim); font-size: 14px; }
+  .job li { margin-bottom: 4px; }
+  .job b { color: var(--text); font-weight: 600; }
+
+  /* Certifications */
+  .certs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 560px) { .certs { grid-template-columns: 1fr; } }
+  .cert {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--bg-panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px; text-decoration: none; color: inherit;
+    transition: border-color 0.15s;
+  }
+  .cert:hover { border-color: var(--accent-dim); }
+  .cert-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700;
+    padding: 4px 7px; border-radius: 4px; white-space: nowrap; margin-top: 1px;
+  }
+  .b-blue { background: #1c3a5e; color: #8ab4e8; }
+  .b-dark { background: #262c36; color: #c9d1d9; }
+  .b-orange { background: #4a3418; color: #e0a940; }
+  .b-green { background: #163a2a; color: #3ecf8e; }
+  .cert-name { font-size: 14px; font-weight: 600; }
+  .cert-sub { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+  .cert.pending { opacity: 0.6; }
+  .cert.pending:hover { border-color: var(--line); }
+
+  /* Projects */
+  .proj { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .proj:last-child { border-bottom: none; }
+  .proj a { color: var(--accent); text-decoration: none; font-size: 13px; }
+  .proj a:hover { text-decoration: underline; }
+  .proj-name { font-weight: 600; }
+  .proj-desc { color: var(--text-dim); font-size: 13.5px; }
+
+  footer { color: var(--text-dim); font-size: 12.5px; text-align: center; padding-top: 20px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="term">
+    <div class="term-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    </div>
+    <div class="term-body">
+      <div class="term-line mono"><span class="prompt">sergi@tbilisi</span>:~$ whoami<span class="cursor"></span></div>
+      <div class="term-out">
+        <div class="name">Sergi Papinashvili</div>
+        <div class="role mono">DevOps / Platform Engineer</div>
+        <div class="contact mono">
+          <a href="mailto:papinashvilisergi@gmail.com">papinashvilisergi@gmail.com</a>
+          <span>·</span>
+          <span>+995 571 04 19 95</span>
+          <span>·</span>
+          <span>Tbilisi, Georgia</span>
+          <span>·</span>
+          <a href="https://linkedin.com/in/sergipapinashvili" target="_blank">linkedin</a>
+          <span>·</span>
+          <a href="https://github.com/papinashvilisergi" target="_blank">github</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <p class="summary">10+ years in tech overall, of which 5+ years in DevOps specifically — spanning on-prem infrastructure, hybrid cloud, and Kubernetes platform work across banking, security, and infrastructure teams.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">Skills</p>
+    <div class="tags">
+      <span class="tag">Kubernetes / Helm</span><span class="tag">ArgoCD</span><span class="tag">Terraform / OpenTofu</span>
+      <span class="tag">Ansible / AWX</span><span class="tag">Docker</span><span class="tag">CI/CD Pipelines</span>
+      <span class="tag">Kong API Gateway</span><span class="tag">AWS / Route53 / Cloudflare</span><span class="tag">Azure</span>
+      <span class="tag">Linux</span><span class="tag">Bash / Python / Go</span><span class="tag">Git</span>
+      <span class="tag">Grafana / Prometheus / Zabbix</span><span class="tag">Elasticsearch / Kibana / Fluentd</span>
+      <span class="tag">PostgreSQL / Oracle / MongoDB</span><span class="tag">HashiCorp Vault</span><span class="tag">RabbitMQ</span>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Experience</p>
+
+    <div class="job">
+      <div class="job-head"><span class="job-co">AdaptiveOS · Self-employed</span><span class="job-date">since Feb 2026</span></div>
+      <div class="job-title">Creator and Lead Maintainer</div>
+      <ul>
+        <li>Solo-founded and maintain an open-source, <b>modular polyrepo</b> Linux distro — kernel compilation, init systems, boot process internals.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><span class="job-co">TBC Bank</span><span class="job-date">Feb 2025 – Feb 2026</span></div>
+      <div class="job-title">DevOps Engineer</div>
+      <ul>
+        <li>Architected and operated a production <b>Kubernetes cluster</b> (hybrid on-prem/cloud), with <b>Helm</b> charts and <b>ArgoCD</b>-based GitOps deployments.</li>
+        <li>Migrated legacy services onto Kubernetes via <b>Kong</b> API routing and <b>GitLab CI</b> pipelines.</li>
+        <li>Built the <b>Grafana + Prometheus</b> observability stack from scratch; used <b>Dynatrace</b> during on-call rotations.</li>
+        <li>Managed <b>AWS</b> (EC2, VPC, S3, CloudWatch, Route53) and Azure environments, plus <b>Ansible Vault</b> for secrets.</li>
+        <li>Worked across <b>Oracle, MongoDB, PostgreSQL</b> in production troubleshooting.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><span class="job-co">BitSec LTD</span><span class="job-date">Jan 2022 – Jan 2025</span></div>
+      <div class="job-title">Infrastructure & DevOps Engineer</div>
+      <ul>
+        <li>Automated network tooling in <b>Go</b> (port scanners, DNS analyzers) and infra provisioning with <b>Ansible</b>.</li>
+        <li>Provisioned cloud-native environments with <b>Terraform + LocalStack</b>; designed disaster recovery strategy.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><span class="job-co">RightNao-Georgia</span><span class="job-date">Sep 2019 – Dec 2021</span></div>
+      <div class="job-title">DevOps Engineer</div>
+      <ul>
+        <li>Built mail infrastructure on <b>Postfix/Dovecot</b>, hardened with DMARC/DKIM/SPF via <b>Cloudflare</b> DNS — 10/10 sender reputation.</li>
+        <li>Administered <b>Zabbix</b> monitoring and <b>PFSense</b> firewall; automated provisioning with <b>Ansible</b>.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><span class="job-co">Futkara – Impervet LTD</span><span class="job-date">Jan 2016 – Aug 2019</span></div>
+      <div class="job-title">IT Operations Engineer</div>
+      <ul>
+        <li>Network troubleshooting and Windows Server administration.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Certifications</p>
+    <div class="certs">
+
+      <a class="cert" href="certs/lpic1.pdf" target="_blank">
+        <span class="cert-badge b-blue">LPIC-1</span>
+        <span><span class="cert-name">Linux Professional Institute</span><br><span class="cert-sub">Certified Linux Administrator · 2023 (official)</span></span>
+      </a>
+
+      <a class="cert" href="certs/ccna.pdf" target="_blank">
+        <span class="cert-badge b-dark">CCNA</span>
+        <span><span class="cert-name">Cisco Certified Network Associate</span><br><span class="cert-sub">Routing, Switching & Security · 2017–2018 (official)</span></span>
+      </a>
+
+      <span class="cert pending">
+        <span class="cert-badge b-orange">CKA ★</span>
+        <span><span class="cert-name">Certified Kubernetes Administrator</span><br><span class="cert-sub">Exam: Aug 26, 2026</span></span>
+      </span>
+
+      <span class="cert">
+        <span class="cert-badge b-green">GITA</span>
+        <span>
+          <span class="cert-name">DevOps Engineering – Do IT with EU</span><br>
+          <span class="cert-sub">GITA &amp; TBC IT Academy · 2024–2025 —
+            <a href="certs/gita.pdf" target="_blank" style="color:var(--accent); text-decoration:underline;">GITA</a> ·
+            <a href="certs/tbc.pdf" target="_blank" style="color:var(--accent); text-decoration:underline;">TBC</a>
+          </span>
+        </span>
+      </span>
+
+      <a class="cert" href="certs/gcp.pdf" target="_blank">
+        <span class="cert-badge b-orange">GCP</span>
+        <span><span class="cert-name">Cloud Engineer (Prep)</span><br><span class="cert-sub">Google Cloud · 2026</span></span>
+      </a>
+
+      <a class="cert" href="certs/itil.pdf" target="_blank">
+        <span class="cert-badge b-blue">ITIL+</span>
+        <span><span class="cert-name">ITIL for DevOps</span><br><span class="cert-sub">CompTIA · 2026</span></span>
+      </a>
+
+      <a class="cert" href="certs/kodekloud.pdf" target="_blank">
+        <span class="cert-badge b-dark">KodeKloud</span>
+        <span><span class="cert-name">Cloud Native Prep</span><br><span class="cert-sub">Argo, Prometheus, Terraform, GitOps · 2026</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Projects</p>
+    <div class="proj">
+      <span class="proj-name">AdaptiveOS</span> — <span class="proj-desc">custom Linux distribution</span> —
+      <a href="https://github.com/orgs/adaptive-os/repositories" target="_blank">GitHub</a>
+    </div>
+    <div class="proj">
+      <span class="proj-name">LLM RAG Assistant</span> — <span class="proj-desc">local offline RAG pipeline (Ollama, LangChain, ChromaDB)</span> —
+      <a href="https://github.com/papinashvilisergi/llm-rag-assistant" target="_blank">GitHub</a>
+    </div>
+    <div class="proj">
+      <span class="proj-name">Secure Mesh VPN</span> — <span class="proj-desc">WireGuard/XRay-based mesh VPN</span> —
+      <a href="https://github.com/papinashvilisergi/secure-mesh-vpn" target="_blank">GitHub</a>
+    </div>
+    <div class="proj">
+      <span class="proj-name">SaaS Monitor</span> — <span class="proj-desc">async FastAPI weather monitoring app</span> —
+      <a href="https://github.com/papinashvilisergi/saas-monitor" target="_blank">GitHub</a>
+    </div>
+    <div class="proj">
+      <span class="proj-name">URL Shortener</span> —
+      <a href="https://github.com/papinashvilisergi/url-shortener" target="_blank">GitHub</a>
+    </div>
+    <div class="proj">
+      <span class="proj-name">CalorieFlow</span> — <span class="proj-desc">cross-platform calorie tracker (Flutter/Dart)</span> —
+      <a href="https://github.com/papinashvilisergi/calorieflow" target="_blank">GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    Georgian Technical University · Faculty of Informatics and Control Systems · 2016–2020<br>
+    English (Professional) · Russian (Professional) · Georgian (Native)
+  </footer>
+
+</div>
+</body>
+</html>
