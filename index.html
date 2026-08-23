@@ -4,8 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sergi Papinashvili — DevOps / Platform Engineer</title>
+<script>
+  // Apply saved theme before paint, to avoid a flash of the wrong theme.
+  (function () {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
 <style>
   :root {
+    /* Light theme (default) */
+    --bg: #f7f9fb;
+    --bg-panel: #ffffff;
+    --line: #d9dee5;
+    --text: #1a1f27;
+    --text-dim: #57606a;
+    --accent: #0a8f5c;
+    --accent-dim: #bfe8d6;
+    --term-bar-bg: #eef1f5;
+    --shadow: 0 1px 2px rgba(20, 30, 40, 0.04);
+
+    --badge-blue-bg: #e3edfa; --badge-blue-fg: #1c5fa8;
+    --badge-dark-bg: #e9ecef; --badge-dark-fg: #3a4149;
+    --badge-orange-bg: #fdf0dc; --badge-orange-fg: #a3610a;
+    --badge-green-bg: #e1f5ea; --badge-green-fg: #0a8f5c;
+  }
+  [data-theme="dark"] {
     --bg: #0b0f14;
     --bg-panel: #10161d;
     --line: #1f2937;
@@ -13,8 +39,15 @@
     --text-dim: #8b96a5;
     --accent: #3ecf8e;
     --accent-dim: #235c43;
-    --amber: #e0a940;
+    --term-bar-bg: #0e1319;
+    --shadow: none;
+
+    --badge-blue-bg: #1c3a5e; --badge-blue-fg: #8ab4e8;
+    --badge-dark-bg: #262c36; --badge-dark-fg: #c9d1d9;
+    --badge-orange-bg: #4a3418; --badge-orange-fg: #e0a940;
+    --badge-green-bg: #163a2a; --badge-green-fg: #3ecf8e;
   }
+
   * { box-sizing: border-box; }
   body {
     margin: 0;
@@ -23,6 +56,7 @@
     font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
     font-size: 15px;
     line-height: 1.6;
+    transition: background 0.15s, color 0.15s;
   }
   .mono {
     font-family: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
@@ -36,17 +70,42 @@
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 40px;
+    box-shadow: var(--shadow);
   }
   .term-bar {
-    display: flex; gap: 6px;
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
     padding: 10px 14px;
-    background: #0e1319;
+    background: var(--term-bar-bg);
     border-bottom: 1px solid var(--line);
   }
+  .term-bar-dots { display: flex; gap: 6px; }
   .dot { width: 10px; height: 10px; border-radius: 50%; }
   .dot.r { background: #ff5f56; }
   .dot.y { background: #ffbd2e; }
   .dot.g { background: #27c93f; }
+
+  /* Theme toggle switch */
+  .theme-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; cursor: pointer;
+    padding: 3px 6px; border-radius: 20px;
+    color: var(--text-dim); font-size: 12px;
+  }
+  .switch {
+    position: relative; width: 34px; height: 18px;
+    background: var(--line); border-radius: 20px;
+    transition: background 0.15s;
+  }
+  .switch::before {
+    content: ""; position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--bg-panel);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    transition: transform 0.15s;
+  }
+  [data-theme="dark"] .switch { background: var(--accent-dim); }
+  [data-theme="dark"] .switch::before { transform: translateX(16px); }
+
   .term-body { padding: 22px 20px 26px; }
   .term-line { color: var(--text-dim); font-size: 13.5px; }
   .term-line .prompt { color: var(--accent); }
@@ -74,6 +133,7 @@
   .tag {
     font-size: 12.5px; padding: 5px 10px; border-radius: 5px;
     background: var(--bg-panel); border: 1px solid var(--line); color: var(--text-dim);
+    box-shadow: var(--shadow);
   }
 
   /* Experience */
@@ -99,19 +159,21 @@
     background: var(--bg-panel); border: 1px solid var(--line); border-radius: 8px;
     padding: 14px; text-decoration: none; color: inherit;
     transition: border-color 0.15s;
+    box-shadow: var(--shadow);
   }
-  .cert:hover { border-color: var(--accent-dim); }
+  .cert:hover { border-color: var(--accent); }
   .cert-badge {
     font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700;
     padding: 4px 7px; border-radius: 4px; white-space: nowrap; margin-top: 1px;
   }
-  .b-blue { background: #1c3a5e; color: #8ab4e8; }
-  .b-dark { background: #262c36; color: #c9d1d9; }
-  .b-orange { background: #4a3418; color: #e0a940; }
-  .b-green { background: #163a2a; color: #3ecf8e; }
+  .b-blue { background: var(--badge-blue-bg); color: var(--badge-blue-fg); }
+  .b-dark { background: var(--badge-dark-bg); color: var(--badge-dark-fg); }
+  .b-orange { background: var(--badge-orange-bg); color: var(--badge-orange-fg); }
+  .b-green { background: var(--badge-green-bg); color: var(--badge-green-fg); }
   .cert-name { font-size: 14px; font-weight: 600; }
   .cert-sub { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
-  .cert.pending { opacity: 0.6; }
+  .cert-sub a { color: var(--accent); text-decoration: underline; }
+  .cert.pending { opacity: 0.65; }
   .cert.pending:hover { border-color: var(--line); }
 
   /* Projects */
@@ -130,7 +192,13 @@
 
   <div class="term">
     <div class="term-bar">
-      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <div class="term-bar-dots">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      </div>
+      <button class="theme-toggle mono" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span id="theme-label">light</span>
+        <span class="switch"></span>
+      </button>
     </div>
     <div class="term-body">
       <div class="term-line mono"><span class="prompt">sergi@tbilisi</span>:~$ whoami<span class="cursor"></span></div>
@@ -160,8 +228,9 @@
     <p class="eyebrow">Skills</p>
     <div class="tags">
       <span class="tag">Kubernetes / Helm</span><span class="tag">ArgoCD</span><span class="tag">Terraform / OpenTofu</span>
-      <span class="tag">Ansible / AWX</span><span class="tag">Docker</span><span class="tag">CI/CD Pipelines</span>
-      <span class="tag">Kong API Gateway</span><span class="tag">AWS / Route53 / Cloudflare</span><span class="tag">Azure</span>
+      <span class="tag">Ansible / AWX</span><span class="tag">Docker</span><span class="tag">CI/CD (GitHub, GitLab, Azure, Jenkins)</span>
+      <span class="tag">Kong API Gateway</span><span class="tag">AWS / Route53 / Cloudflare</span>
+      <span class="tag">Azure</span><span class="tag">Google Cloud</span><span class="tag">Akamai Cloud</span>
       <span class="tag">Linux</span><span class="tag">Bash / Python / Go</span><span class="tag">Git</span>
       <span class="tag">Grafana / Prometheus / Zabbix</span><span class="tag">Elasticsearch / Kibana / Fluentd</span>
       <span class="tag">PostgreSQL / Oracle / MongoDB</span><span class="tag">HashiCorp Vault</span><span class="tag">RabbitMQ</span>
@@ -186,7 +255,7 @@
         <li>Architected and operated a production <b>Kubernetes cluster</b> (hybrid on-prem/cloud), with <b>Helm</b> charts and <b>ArgoCD</b>-based GitOps deployments.</li>
         <li>Migrated legacy services onto Kubernetes via <b>Kong</b> API routing and <b>GitLab CI</b> pipelines.</li>
         <li>Built the <b>Grafana + Prometheus</b> observability stack from scratch; used <b>Dynatrace</b> during on-call rotations.</li>
-        <li>Managed <b>AWS</b> (EC2, VPC, S3, CloudWatch, Route53) and Azure environments, plus <b>Ansible Vault</b> for secrets.</li>
+        <li>Managed <b>Ansible Vault</b> for secrets across <b>AWS</b> (EC2, VPC, S3, CloudWatch, Route53, IAM) and <b>Azure</b> (VMs, VNets, Blob Storage, Monitor, DNS, Entra ID, RBAC).</li>
         <li>Worked across <b>Oracle, MongoDB, PostgreSQL</b> in production troubleshooting.</li>
       </ul>
     </div>
@@ -204,7 +273,7 @@
       <div class="job-head"><span class="job-co">RightNao-Georgia</span><span class="job-date">Sep 2019 – Dec 2021</span></div>
       <div class="job-title">DevOps Engineer</div>
       <ul>
-        <li>Built mail infrastructure on <b>Postfix/Dovecot</b>, hardened with DMARC/DKIM/SPF via <b>Cloudflare</b> DNS — 10/10 sender reputation.</li>
+        <li>Built mail infrastructure on <b>Postfix/Dovecot</b>, hardened with DMARC/DKIM/SPF via <b>Cloudflare</b> DNS (PTR records via <b>Linode/Akamai</b>, where the mail server was hosted) — 10/10 sender reputation.</li>
         <li>Administered <b>Zabbix</b> monitoring and <b>PFSense</b> firewall; automated provisioning with <b>Ansible</b>.</li>
       </ul>
     </div>
@@ -242,8 +311,8 @@
         <span>
           <span class="cert-name">DevOps Engineering – Do IT with EU</span><br>
           <span class="cert-sub">GITA &amp; TBC IT Academy · 2024–2025 —
-            <a href="certs/gita.pdf" target="_blank" style="color:var(--accent); text-decoration:underline;">GITA</a> ·
-            <a href="certs/tbc.pdf" target="_blank" style="color:var(--accent); text-decoration:underline;">TBC</a>
+            <a href="certs/gita.pdf" target="_blank">GITA</a> ·
+            <a href="certs/tbc.pdf" target="_blank">TBC</a>
           </span>
         </span>
       </span>
@@ -251,6 +320,11 @@
       <a class="cert" href="certs/gcp.pdf" target="_blank">
         <span class="cert-badge b-orange">GCP</span>
         <span><span class="cert-name">Cloud Engineer (Prep)</span><br><span class="cert-sub">Google Cloud · 2026</span></span>
+      </a>
+
+      <a class="cert" href="certs/azure.pdf" target="_blank">
+        <span class="cert-badge b-blue">AZ-104</span>
+        <span><span class="cert-name">Azure Administrator (Prep)</span><br><span class="cert-sub">Microsoft Press · 2026</span></span>
       </a>
 
       <a class="cert" href="certs/itil.pdf" target="_blank">
@@ -300,5 +374,25 @@
   </footer>
 
 </div>
+
+<script>
+  function updateLabel() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.getElementById('theme-label').textContent = isDark ? 'dark' : 'light';
+  }
+  function toggleTheme() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+    updateLabel();
+  }
+  updateLabel();
+</script>
+
 </body>
 </html>
