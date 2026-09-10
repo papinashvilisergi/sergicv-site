@@ -204,7 +204,7 @@
       <div class="term-line mono"><span class="prompt">sergi@tbilisi</span>:~$ whoami<span class="cursor"></span></div>
       <div class="term-out">
         <div class="name">Sergi Papinashvili</div>
-        <div class="role mono">DevOps Engineer (LPI & CCNA Certified)</div>
+        <div class="role mono">DevOps Engineer (LPIC1 & CCNA Certified)</div>
         <div class="contact mono">
           <a href="mailto:papinashvilisergi@gmail.com">papinashvilisergi@gmail.com</a>
           <span>·</span>
@@ -233,7 +233,7 @@
       <span class="tag">Azure (VMs, VNets, Blob Storage, Monitor, DNS, Entra ID, RBAC)</span><span class="tag">Linode/Akamai</span>
       <span class="tag">Linux (Ubuntu / Rocky Linux)</span><span class="tag">Bash / Python</span><span class="tag">Git</span>
       <span class="tag">Grafana / Prometheus / Zabbix</span><span class="tag">Elasticsearch / Kibana / Fluentd</span>
-      <span class="tag">MariaDB / Oracle / MongoDB</span><span class="tag">HashiCorp Vault</span><span class="tag">RabbitMQ</span>
+      <span class="tag">MariaDB / MySQL / Oracle / MongoDB</span><span class="tag">HashiCorp Vault</span><span class="tag">RabbitMQ</span>
       <span class="tag">Postfix Mail Server</span><span class="tag">WireGuard / VPN / XRay</span><span class="tag">Headscale / Tailscale</span>
     </div>
   </section>
@@ -247,6 +247,7 @@
       <ul>
         <li><b>Custom Linux Distribution</b> — solo-founded and maintain an open-source, <b>modular polyrepo</b> distro, covering packaging, init systems, and the build pipeline.</li>
         <li>Provided <b>orchestration scripts</b> and CI pipelines to automate image builds and manage the workspace.</li>
+        <li>For more info, please visit: <a href="https://adaptive-os.github.io/" target="_blank">adaptive-os.github.io</a></li>
       </ul>
     </div>
 
@@ -257,10 +258,10 @@
         <li>Managed a production <b>Kubernetes cluster</b>, ensuring high availability and reliability across the platform; created and managed <b>Helm charts</b> for application deployments.</li>
         <li>Migrated existing services to <b>Kubernetes</b> — moving them off their prior infrastructure and onto K8s via <b>ArgoCD</b> deployments and <b>Kong</b> API routing; wrote and optimized <b>GitLab CI</b> pipelines alongside <b>Azure DevOps</b>.</li>
         <li>Set up the <b>Grafana + Prometheus observability stack</b>, covering service health, performance metrics, and infrastructure KPIs across all servers — enabling proactive scaling ahead of demand instead of reactive fixes after issues occurred.</li>
-        <li>Adopted <b>ArgoCD's pull-based GitOps model</b> to deploy only changed components — cutting deployment time and improving pod self-healing across legacy and modern services.</li>
+        <li>Used <b>ArgoCD's pull-based GitOps model</b> to deploy only changed components — cutting deployment time and improving pod self-healing across legacy and modern services.</li>
         <li>Managed <b>Kong API Gateway</b> for all API-facing services (worker services routed via ArgoCD only), giving developers and QA self-service access to endpoints without manual provisioning.</li>
         <li>Proactively identified and resolved critical <b>Kubernetes pod anomalies</b> and development-phase bugs before reaching production.</li>
-        <li>Worked across multiple production databases — <b>Oracle, MongoDB, and PostgreSQL</b> — including direct query-level troubleshooting of endpoints failing to read from the database.</li>
+        <li>Worked across multiple production databases — <b>Oracle, MongoDB, and MySQL</b> — including direct query-level troubleshooting of endpoints failing to read from the database.</li>
       </ul>
     </div>
 
@@ -279,9 +280,10 @@
       <div class="job-title">Systems Engineer</div>
       <ul>
         <li>Designed and automated <b>mail infrastructure pipeline</b> on <b>Postfix / Dovecot / SpamAssassin</b>, hardening deliverability and security with <b>DMARC, DKIM, and SPF</b> records managed via <b>Cloudflare</b> DNS (PTR records managed separately via <b>Linode/Akamai</b>, where the mail server was hosted), and monitoring sender reputation via Talos Intelligence and MXToolbox — reaching a 10/10 reputation score and securing whitelisting with Google, Microsoft, and Spamhaus.</li>
-        <li>Implemented network security controls via <b>PFSense</b> (firewall rules, ACLs, whitelisting).</li>
+        <li>Managed network security controls via <b>PFSense</b> (firewall rules, ACLs, whitelisting).</li>
         <li>Deployed and maintained <b>Grafana dashboards</b> for real-time <b>infrastructure monitoring</b>.</li>
         <li>Set up and administered <b>Zabbix</b> for network-wide monitoring and alerting.</li>
+        <li>Set up and managed a <b>MariaDB</b> database backing the mail server.</li>
         <li>Engineered an <b>OpenVPN infrastructure pipeline</b> for remote user connectivity, with <b>automatic reconnection</b> upon internal network access loss.</li>
         <li>Automated Linux environment provisioning and <b>configuration management using Ansible</b>, eliminating the need to manually update configurations across multiple servers individually.</li>
       </ul>
@@ -291,7 +293,8 @@
       <div class="job-head"><span class="job-co">Futkara – Impervet LTD</span><span class="job-date">Jan 2016 – Aug 2019</span></div>
       <div class="job-title">IT Operations Engineer</div>
       <ul>
-        <li>Network troubleshooting and Windows Server administration.</li>
+        <li>Performed network and enterprise troubleshooting, <b>Windows Server</b> administration, and hardware support (printers, scanners, OS reinstalls, backups) while completing coursework toward CCNA certification.</li>
+        <li>Carried out early manual monitoring of website latency and uptime, prior to adopting dedicated DevOps tooling.</li>
       </ul>
     </div>
   </section>
@@ -379,7 +382,7 @@
 
   <footer>
     Georgian Technical University · Faculty of Informatics and Control Systems · 2016–2020<br>
-    English (Professional) · Russian (Professional) · Georgian (Native)
+    English (B2) · Russian (C1) · Georgian (Native)
   </footer>
 
 </div>
