@@ -227,13 +227,14 @@
   <section>
     <p class="eyebrow">Skills</p>
     <div class="tags">
-      <span class="tag">Kubernetes / Helm</span><span class="tag">ArgoCD</span><span class="tag">Terraform / OpenTofu</span>
+      <span class="tag">Kubernetes / Helm</span><span class="tag">ArgoCD</span><span class="tag">Terraform</span>
       <span class="tag">Ansible / AWX</span><span class="tag">Docker</span><span class="tag">CI/CD (GitHub, GitLab, Azure, Jenkins)</span>
-      <span class="tag">Kong API Gateway</span><span class="tag">AWS / Route53 / Cloudflare</span>
-      <span class="tag">Azure</span><span class="tag">Google Cloud</span><span class="tag">Akamai Cloud</span>
-      <span class="tag">Linux</span><span class="tag">Bash / Python / Go</span><span class="tag">Git</span>
+      <span class="tag">Kong API Gateway</span><span class="tag">AWS (EC2, VPC, S3, CloudWatch, Route53, IAM)</span><span class="tag">Cloudflare</span>
+      <span class="tag">Azure (VMs, VNets, Blob Storage, Monitor, DNS, Entra ID, RBAC)</span><span class="tag">Linode/Akamai</span>
+      <span class="tag">Linux (Ubuntu / Rocky Linux)</span><span class="tag">Bash / Python</span><span class="tag">Git</span>
       <span class="tag">Grafana / Prometheus / Zabbix</span><span class="tag">Elasticsearch / Kibana / Fluentd</span>
-      <span class="tag">PostgreSQL / Oracle / MongoDB</span><span class="tag">HashiCorp Vault</span><span class="tag">RabbitMQ</span>
+      <span class="tag">MariaDB / Oracle / MongoDB</span><span class="tag">HashiCorp Vault</span><span class="tag">RabbitMQ</span>
+      <span class="tag">Postfix Mail Server</span><span class="tag">WireGuard / VPN / XRay</span><span class="tag">Headscale / Tailscale</span>
     </div>
   </section>
 
@@ -242,9 +243,10 @@
 
     <div class="job">
       <div class="job-head"><span class="job-co">AdaptiveOS · Self-employed</span><span class="job-date">since Feb 2026</span></div>
-      <div class="job-title">Creator and Lead Maintainer</div>
+      <div class="job-title">Creator & Maintainer</div>
       <ul>
-        <li>Solo-founded and maintain an open-source, <b>modular polyrepo</b> Linux distro — kernel compilation, init systems, boot process internals.</li>
+        <li><b>Custom Linux Distribution</b> — solo-founded and maintain an open-source, <b>modular polyrepo</b> distro, covering packaging, init systems, and the build pipeline.</li>
+        <li>Provided <b>orchestration scripts</b> and CI pipelines to automate image builds and manage the workspace.</li>
       </ul>
     </div>
 
@@ -252,11 +254,13 @@
       <div class="job-head"><span class="job-co">TBC Bank</span><span class="job-date">Feb 2025 – Feb 2026</span></div>
       <div class="job-title">DevOps Engineer</div>
       <ul>
-        <li>Architected and operated a production <b>Kubernetes cluster</b> (hybrid on-prem/cloud), with <b>Helm</b> charts and <b>ArgoCD</b>-based GitOps deployments.</li>
-        <li>Migrated legacy services onto Kubernetes via <b>Kong</b> API routing and <b>GitLab CI</b> pipelines.</li>
-        <li>Built the <b>Grafana + Prometheus</b> observability stack from scratch; used <b>Dynatrace</b> during on-call rotations.</li>
-        <li>Managed <b>Ansible Vault</b> for secrets across <b>AWS</b> (EC2, VPC, S3, CloudWatch, Route53, IAM) and <b>Azure</b> (VMs, VNets, Blob Storage, Monitor, DNS, Entra ID, RBAC).</li>
-        <li>Worked across <b>Oracle, MongoDB, PostgreSQL</b> in production troubleshooting.</li>
+        <li>Managed a production <b>Kubernetes cluster</b>, ensuring high availability and reliability across the platform; created and managed <b>Helm charts</b> for application deployments.</li>
+        <li>Migrated existing services to <b>Kubernetes</b> — moving them off their prior infrastructure and onto K8s via <b>ArgoCD</b> deployments and <b>Kong</b> API routing; wrote and optimized <b>GitLab CI</b> pipelines alongside <b>Azure DevOps</b>.</li>
+        <li>Set up the <b>Grafana + Prometheus observability stack</b>, covering service health, performance metrics, and infrastructure KPIs across all servers — enabling proactive scaling ahead of demand instead of reactive fixes after issues occurred.</li>
+        <li>Adopted <b>ArgoCD's pull-based GitOps model</b> to deploy only changed components — cutting deployment time and improving pod self-healing across legacy and modern services.</li>
+        <li>Managed <b>Kong API Gateway</b> for all API-facing services (worker services routed via ArgoCD only), giving developers and QA self-service access to endpoints without manual provisioning.</li>
+        <li>Proactively identified and resolved critical <b>Kubernetes pod anomalies</b> and development-phase bugs before reaching production.</li>
+        <li>Worked across multiple production databases — <b>Oracle, MongoDB, and PostgreSQL</b> — including direct query-level troubleshooting of endpoints failing to read from the database.</li>
       </ul>
     </div>
 
@@ -264,17 +268,22 @@
       <div class="job-head"><span class="job-co">BitSec LTD</span><span class="job-date">Jan 2022 – Jan 2025</span></div>
       <div class="job-title">Systems & Infrastructure Engineer</div>
       <ul>
-        <li>Automated network tooling in <b>Go</b> (port scanners, DNS analyzers) and infra provisioning with <b>Ansible</b>.</li>
-        <li>Provisioned cloud-native environments with <b>Terraform + LocalStack</b>; designed disaster recovery strategy.</li>
+        <li>Automated network tooling (<b>port scanners, DNS analyzers, traffic monitors</b>) and infrastructure provisioning using <b>Ansible</b> and <b>Python</b>.</li>
+        <li>Managed mail infrastructure — <b>PST file cleanup and backups</b> — and administered <b>Active Directory</b> user accounts.</li>
+        <li>Designed enterprise-level <b>disaster recovery and backup strategies</b> for mission-critical business data using <b>Acronis, Norton Ghost, AOMEI, and Clonezilla</b>.</li>
       </ul>
     </div>
 
     <div class="job">
       <div class="job-head"><span class="job-co">RightNao-Georgia</span><span class="job-date">Sep 2019 – Dec 2021</span></div>
-      <div class="job-title">DevOps Engineer</div>
+      <div class="job-title">Systems Engineer</div>
       <ul>
-        <li>Built mail infrastructure on <b>Postfix/Dovecot</b>, hardened with DMARC/DKIM/SPF via <b>Cloudflare</b> DNS (PTR records via <b>Linode/Akamai</b>, where the mail server was hosted) — 10/10 sender reputation.</li>
-        <li>Administered <b>Zabbix</b> monitoring and <b>PFSense</b> firewall; automated provisioning with <b>Ansible</b>.</li>
+        <li>Designed and automated <b>mail infrastructure pipeline</b> on <b>Postfix / Dovecot / SpamAssassin</b>, hardening deliverability and security with <b>DMARC, DKIM, and SPF</b> records managed via <b>Cloudflare</b> DNS (PTR records managed separately via <b>Linode/Akamai</b>, where the mail server was hosted), and monitoring sender reputation via Talos Intelligence and MXToolbox — reaching a 10/10 reputation score and securing whitelisting with Google, Microsoft, and Spamhaus.</li>
+        <li>Implemented network security controls via <b>PFSense</b> (firewall rules, ACLs, whitelisting).</li>
+        <li>Deployed and maintained <b>Grafana dashboards</b> for real-time <b>infrastructure monitoring</b>.</li>
+        <li>Set up and administered <b>Zabbix</b> for network-wide monitoring and alerting.</li>
+        <li>Engineered an <b>OpenVPN infrastructure pipeline</b> for remote user connectivity, with <b>automatic reconnection</b> upon internal network access loss.</li>
+        <li>Automated Linux environment provisioning and <b>configuration management using Ansible</b>, eliminating the need to manually update configurations across multiple servers individually.</li>
       </ul>
     </div>
 
@@ -298,7 +307,7 @@
 
       <a class="cert" href="certs/ccna.pdf" target="_blank">
         <span class="cert-badge b-dark">CCNA</span>
-        <span><span class="cert-name">Cisco Certified Network Associate</span><br><span class="cert-sub">Routing, Switching & Security · 2017–2018 (official)</span></span>
+        <span><span class="cert-name">Cisco Certified Network Associate (Bundle)</span><br><span class="cert-sub">Routing, Switching & Security · 2017–2018 (official)</span></span>
       </a>
 
       <span class="cert pending">
