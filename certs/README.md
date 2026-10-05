@@ -10,6 +10,4 @@ so the links on the site (index.html) work correctly:
 - gcp.pdf
 - itil.pdf
 - kodekloud.pdf
-
-(CKA has no link yet since it's not obtained — add ckа.pdf and update
-index.html once you pass the exam.)
+- cka.pdf
